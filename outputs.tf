@@ -1,13 +1,49 @@
-output "private_endpoints" {
-  description = <<DESCRIPTION
-  A map of the private endpoints created.
-  DESCRIPTION
-  value       = var.private_endpoints_manage_dns_zone_group ? azurerm_private_endpoint.this_managed_dns_zone_groups : azurerm_private_endpoint.this_unmanaged_dns_zone_groups
+output "address_resource" {
+  description = "The address resource."
+  value = {
+    id                  = azapi_resource.address.id
+    name                = azapi_resource.address.name
+    resource_group_name = var.resourceGroup.name
+    location            = azapi_resource.address.location
+
+    shippingAddress = {
+      addressType     = "None"
+      city            = var.city
+      companyName     = var.companyName
+      country         = var.country
+      postalCode      = var.postalCode
+      stateOrProvince = var.stateOrProvince
+      streetAddress1  = var.streetAddress1
+      streetAddress2  = var.streetAddress2
+      streetAddress3  = var.streetAddress3
+      zipExtendedCode = var.zipExtendedCode
+    }
+    contactDetails = {
+      contactName    = var.contactName
+      emailList      = var.emailList
+      mobile         = var.mobile
+      phone          = var.phone
+      phoneExtension = var.phoneExtension
+    }
+  }
 }
 
-# Module owners should include the full resource via a 'resource' output
-# https://azure.github.io/Azure-Verified-Modules/specs/terraform/#id-tffr2---category-outputs---additional-terraform-outputs
-output "resource" {
-  description = "This is the full output for the resource."
-  value       = azurerm_resource_group.TODO # TODO: Replace this dummy resource azurerm_resource_group.TODO with your module resource
+output "id" {
+  description = "The ID of the resource."
+  value       = azapi_resource.site.id
+}
+
+output "name" {
+  description = "The name of the resource"
+  value       = azapi_resource.site.name
+}
+
+output "site_resource" {
+  description = "The site manager resource."
+  value = {
+    id                  = azapi_resource.site.id
+    name                = azapi_resource.site.name
+    resource_group_name = var.resourceGroup.name
+    location            = azapi_resource.site.location
+  }
 }
