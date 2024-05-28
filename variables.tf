@@ -1,5 +1,4 @@
 variable "resourceGroup" {
-  type        = azurerm_resource_group
   description = "The resource group of the site."
 }
 
