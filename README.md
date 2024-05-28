@@ -26,13 +26,15 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.5)
 
+- <a name="requirement_azapi"></a> [azapi](#requirement\_azapi) (~>1.13)
+
 - <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 3.71)
 
 ## Providers
 
 The following providers are used by this module:
 
-- <a name="provider_azapi"></a> [azapi](#provider\_azapi)
+- <a name="provider_azapi"></a> [azapi](#provider\_azapi) (~>1.13)
 
 ## Resources
 
@@ -50,7 +52,7 @@ The following input variables are required:
 
 Description: The resource group of the site.
 
-Type: `any`
+Type: `azurerm_resource_group`
 
 ### <a name="input_siteId"></a> [siteId](#input\_siteId)
 
@@ -176,7 +178,23 @@ Default: `""`
 
 ## Outputs
 
-No outputs.
+The following outputs are exported:
+
+### <a name="output_address_resource"></a> [address\_resource](#output\_address\_resource)
+
+Description: The address resource.
+
+### <a name="output_id"></a> [id](#output\_id)
+
+Description: The ID of the resource.
+
+### <a name="output_name"></a> [name](#output\_name)
+
+Description: The name of the resource
+
+### <a name="output_site_resource"></a> [site\_resource](#output\_site\_resource)
+
+Description: The site manager resource.
 
 ## Modules
 
