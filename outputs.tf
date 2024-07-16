@@ -4,3 +4,8 @@ output "resource" {
   description = "This is the full output for the resource."
   value       = azapi_resource.site.name
 }
+
+output "resource_id" {
+  description = "This is the resource id for the site resource."
+  value       = azapi_resource.site.id
+}
