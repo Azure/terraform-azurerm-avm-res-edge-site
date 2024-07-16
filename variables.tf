@@ -159,19 +159,20 @@ variable "address_resource_name" {
   type        = string
 }
 
-variable "resource_group" {
-  description = "The resource group of the site."
-  type = object({
-    id       = string
-    location = string
-    name     = string
-  })
+variable "location" {
+  type        = string
+  description = "Azure region where the resource should be deployed."
+  nullable    = false
+}
+
+variable "resource_group_id" {
+  type        = string
+  description = "The resource group id where the resources will be deployed."
 }
 
 variable "country" {
   description = "The order country of the site."
   type        = string
-  default     = "US"
 }
 
 variable "city" {

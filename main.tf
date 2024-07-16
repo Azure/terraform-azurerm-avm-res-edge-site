@@ -1,9 +1,8 @@
 resource "azapi_resource" "address" {
-  count     = var.country == "" ? 0 : 1
   type      = "Microsoft.EdgeOrder/addresses@2024-02-01"
-  parent_id = var.resource_group.id
+  parent_id = var.resource_group_id
   name      = var.address_resource_name
-  location  = var.resource_group.location
+  location  = var.location
   body = {
     properties = {
       addressClassification = "Site"
@@ -31,14 +30,13 @@ resource "azapi_resource" "address" {
 }
 
 resource "azapi_resource" "site" {
-  count     = var.country == "" ? 0 : 1
   type      = "Microsoft.Edge/Sites@2023-07-01-preview"
-  parent_id = var.resource_group.id
+  parent_id = var.resource_group_id
   name      = var.site_resource_name
   body = {
     properties = {
       displayName       = var.site_display_name
-      addressResourceId = azapi_resource.address[0].id
+      addressResourceId = azapi_resource.address.id
     }
   }
   schema_validation_enabled = false
@@ -50,7 +48,7 @@ resource "azurerm_management_lock" "this" {
 
   lock_level = var.lock.kind
   name       = coalesce(var.lock.name, "lock-${var.lock.kind}")
-  scope      = azapi_resource.address[0].id
+  scope      = azapi_resource.address.id
   notes      = var.lock.kind == "CanNotDelete" ? "Cannot delete the resource or its child resources." : "Cannot delete or modify the resource or its child resources."
 }
 
@@ -58,7 +56,7 @@ resource "azurerm_role_assignment" "this" {
   for_each = var.role_assignments
 
   principal_id                           = each.value.principal_id
-  scope                                  = azapi_resource.address[0].id
+  scope                                  = azapi_resource.address.id
   condition                              = each.value.condition
   condition_version                      = each.value.condition_version
   delegated_managed_identity_resource_id = each.value.delegated_managed_identity_resource_id
