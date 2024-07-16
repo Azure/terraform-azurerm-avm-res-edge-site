@@ -1,3 +1,52 @@
+variable "address_resource_name" {
+  type        = string
+  description = "A resource name for the address."
+}
+
+variable "country" {
+  type        = string
+  description = "The order country of the site."
+}
+
+variable "location" {
+  type        = string
+  description = "Azure region where the resource should be deployed."
+  nullable    = false
+}
+
+variable "resource_group_id" {
+  type        = string
+  description = "The resource group id where the resources will be deployed."
+}
+
+variable "site_display_name" {
+  type        = string
+  description = "A display name for the site."
+}
+
+variable "site_resource_name" {
+  type        = string
+  description = "A resource name for the site."
+}
+
+variable "city" {
+  type        = string
+  default     = ""
+  description = "The city of the site."
+}
+
+variable "company_name" {
+  type        = string
+  default     = ""
+  description = "The company name of the site."
+}
+
+variable "contact_name" {
+  type        = string
+  default     = " "
+  description = "The contact name of the site."
+}
+
 # required AVM interfaces
 # remove only if not supported by the resource
 # tflint-ignore: terraform_unused_declarations
@@ -66,6 +115,12 @@ DESCRIPTION
   }
 }
 
+variable "email_list" {
+  type        = list(string)
+  default     = []
+  description = "A list of email addresses for the site."
+}
+
 variable "enable_telemetry" {
   type        = bool
   default     = true
@@ -111,6 +166,30 @@ DESCRIPTION
   nullable    = false
 }
 
+variable "mobile" {
+  type        = string
+  default     = ""
+  description = "The mobile phone number of the site."
+}
+
+variable "phone" {
+  type        = string
+  default     = ""
+  description = "The phone number of the site."
+}
+
+variable "phone_extension" {
+  type        = string
+  default     = ""
+  description = "The phone extension of the site."
+}
+
+variable "postal_code" {
+  type        = string
+  default     = ""
+  description = "The postal code of the site."
+}
+
 variable "role_assignments" {
   type = map(object({
     role_definition_id_or_name             = string
@@ -137,6 +216,30 @@ DESCRIPTION
   nullable    = false
 }
 
+variable "state_or_province" {
+  type        = string
+  default     = ""
+  description = "The state or province of the site."
+}
+
+variable "street_address_1" {
+  type        = string
+  default     = ""
+  description = "The first line of the street address of the site."
+}
+
+variable "street_address_2" {
+  type        = string
+  default     = ""
+  description = "The second line of the street address of the site."
+}
+
+variable "street_address_3" {
+  type        = string
+  default     = ""
+  description = "The third line of the street address of the site."
+}
+
 # tflint-ignore: terraform_unused_declarations
 variable "tags" {
   type        = map(string)
@@ -144,111 +247,8 @@ variable "tags" {
   description = "(Optional) Tags of the resource."
 }
 
-variable "site_resource_name" {
-  description = "A resource name for the site."
-  type        = string
-}
-
-variable "site_display_name" {
-  description = "A display name for the site."
-  type        = string
-}
-
-variable "address_resource_name" {
-  description = "A resource name for the address."
-  type        = string
-}
-
-variable "location" {
-  type        = string
-  description = "Azure region where the resource should be deployed."
-  nullable    = false
-}
-
-variable "resource_group_id" {
-  type        = string
-  description = "The resource group id where the resources will be deployed."
-}
-
-variable "country" {
-  description = "The order country of the site."
-  type        = string
-}
-
-variable "city" {
-  description = "The city of the site."
-  type        = string
-  default     = ""
-}
-
-variable "company_name" {
-  description = "The company name of the site."
-  type        = string
-  default     = ""
-}
-
-variable "postal_code" {
-  description = "The postal code of the site."
-  type        = string
-  default     = ""
-}
-
-variable "state_or_province" {
-  description = "The state or province of the site."
-  type        = string
-  default     = ""
-}
-
-variable "street_address_1" {
-  description = "The first line of the street address of the site."
-  type        = string
-  default     = ""
-}
-
-variable "street_address_2" {
-  description = "The second line of the street address of the site."
-  type        = string
-  default     = ""
-}
-
-variable "street_address_3" {
-  description = "The third line of the street address of the site."
-  type        = string
-  default     = ""
-}
-
 variable "zip_extended_code" {
+  type        = string
+  default     = ""
   description = "The extended ZIP code of the site."
-  type        = string
-  default     = ""
-}
-
-variable "contact_name" {
-  description = "The contact name of the site."
-  type        = string
-  default     = " "
-}
-
-variable "email_list" {
-  description = "A list of email addresses for the site."
-  type        = list(string)
-  default     = []
-}
-
-variable "mobile" {
-  description = "The mobile phone number of the site."
-  type        = string
-  default     = ""
-}
-
-variable "phone" {
-  description = "The phone number of the site."
-  type        = string
-  default     = ""
-}
-
-variable "phone_extension" {
-  description = "The phone extension of the site."
-  type        = string
-  default     = ""
 }

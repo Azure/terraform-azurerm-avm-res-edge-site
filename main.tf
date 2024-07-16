@@ -1,8 +1,5 @@
 resource "azapi_resource" "address" {
-  type      = "Microsoft.EdgeOrder/addresses@2024-02-01"
-  parent_id = var.resource_group_id
-  name      = var.address_resource_name
-  location  = var.location
+  type = "Microsoft.EdgeOrder/addresses@2024-02-01"
   body = {
     properties = {
       addressClassification = "Site"
@@ -27,18 +24,21 @@ resource "azapi_resource" "address" {
       }
     }
   }
+  location  = var.location
+  name      = var.address_resource_name
+  parent_id = var.resource_group_id
 }
 
 resource "azapi_resource" "site" {
-  type      = "Microsoft.Edge/Sites@2023-07-01-preview"
-  parent_id = var.resource_group_id
-  name      = var.site_resource_name
+  type = "Microsoft.Edge/Sites@2023-07-01-preview"
   body = {
     properties = {
       displayName       = var.site_display_name
       addressResourceId = azapi_resource.address.id
     }
   }
+  name                      = var.site_resource_name
+  parent_id                 = var.resource_group_id
   schema_validation_enabled = false
 }
 
