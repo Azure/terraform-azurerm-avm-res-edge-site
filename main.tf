@@ -1,30 +1,30 @@
 resource "azapi_resource" "address" {
   count     = var.country == "" ? 0 : 1
   type      = "Microsoft.EdgeOrder/addresses@2024-02-01"
-  parent_id = var.resourceGroup.id
-  name      = var.addressResourceName
-  location  = var.resourceGroup.location
+  parent_id = var.resource_group.id
+  name      = var.address_resource_name
+  location  = var.resource_group.location
   body = {
     properties = {
       addressClassification = "Site"
       shippingAddress = {
         addressType     = "None"
         city            = var.city
-        companyName     = var.companyName
+        companyName     = var.company_name
         country         = var.country
-        postalCode      = var.postalCode
-        stateOrProvince = var.stateOrProvince
-        streetAddress1  = var.streetAddress1
-        streetAddress2  = var.streetAddress2
-        streetAddress3  = var.streetAddress3
-        zipExtendedCode = var.zipExtendedCode
+        postalCode      = var.postal_code
+        stateOrProvince = var.state_or_province
+        streetAddress1  = var.street_address_1
+        streetAddress2  = var.street_address_2
+        streetAddress3  = var.street_address_3
+        zipExtendedCode = var.zip_extended_code
       }
       contactDetails = {
-        contactName    = var.contactName
-        emailList      = var.emailList
+        contactName    = var.contact_name
+        emailList      = var.email_list
         mobile         = var.mobile
         phone          = var.phone
-        phoneExtension = var.phoneExtension
+        phoneExtension = var.phone_extension
       }
     }
   }
@@ -33,11 +33,11 @@ resource "azapi_resource" "address" {
 resource "azapi_resource" "site" {
   count     = var.country == "" ? 0 : 1
   type      = "Microsoft.Edge/Sites@2023-07-01-preview"
-  parent_id = var.resourceGroup.id
-  name      = var.siteResourceName
+  parent_id = var.resource_group.id
+  name      = var.site_resource_name
   body = {
     properties = {
-      displayName       = var.siteDisplayName
+      displayName       = var.site_display_name
       addressResourceId = azapi_resource.address[0].id
     }
   }
