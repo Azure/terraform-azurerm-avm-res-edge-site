@@ -26,7 +26,7 @@ module "regions" {
 
 # This allows us to randomize the region for the resource group.
 resource "random_integer" "region_index" {
-  max = length(module.regions.regions) - 1
+  max = length(local.azure_regions) - 1
   min = 0
 }
 ## End of section to provide a random Azure region for the resource group
@@ -38,8 +38,8 @@ module "naming" {
 }
 
 # This is required for resource modules
-resource "azurerm_resource_group" "this" {
-  location = module.regions.regions[random_integer.region_index.result].name
+resource "azurerm_resource_group" "rg" {
+  location = "eastus"
   name     = module.naming.resource_group.name_unique
 }
 
@@ -51,9 +51,11 @@ module "test" {
   source = "../../"
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
-  location            = azurerm_resource_group.this.location
-  name                = "TODO" # TODO update with module.naming.<RESOURCE_TYPE>.name_unique
-  resource_group_name = azurerm_resource_group.this.name
-
-  enable_telemetry = var.enable_telemetry # see variables.tf
+  location              = azurerm_resource_group.rg.location
+  address_resource_name = "test"
+  country               = "US"
+  resource_group_id     = azurerm_resource_group.rg.id
+  site_display_name     = "test"
+  site_resource_name    = "test"
+  enable_telemetry      = var.enable_telemetry
 }
