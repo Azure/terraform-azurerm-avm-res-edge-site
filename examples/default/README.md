@@ -57,11 +57,13 @@ module "test" {
   source = "../../"
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
-  location            = azurerm_resource_group.this.location
-  name                = "TODO" # TODO update with module.naming.<RESOURCE_TYPE>.name_unique
-  resource_group_name = azurerm_resource_group.this.name
-
-  enable_telemetry = var.enable_telemetry # see variables.tf
+  # location              = azurerm_resource_group.this.location
+  address_resource_name = "test"
+  country               = "US"
+  resource_group_id     = azurerm_resource_group.this.id
+  site_display_name     = "test"
+  site_resource_name    = "test"
+  enable_telemetry      = var.enable_telemetry
 }
 ```
 
