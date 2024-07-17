@@ -1,7 +1,3 @@
-provider "azurerm" {
-  features {}
-}
-
 resource "azapi_resource" "address" {
   type = "Microsoft.EdgeOrder/addresses@2024-02-01"
   body = {
