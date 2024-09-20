@@ -49,8 +49,8 @@ resource "azapi_resource" "site" {
   lifecycle {
     ignore_changes = [
       body.properties.provisioningState,
-      body.properties.id,
-      body.properties.name,
+      body.id,
+      body.name,
       body.systemData,
       body.type,
     ]
