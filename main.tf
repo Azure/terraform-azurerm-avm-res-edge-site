@@ -37,6 +37,8 @@ resource "azapi_resource" "site" {
       addressResourceId = azapi_resource.address.id
       provisioningState = null
     }
+    id         = null
+    name       = null
     systemData = null
     type       = null
   }
@@ -47,8 +49,10 @@ resource "azapi_resource" "site" {
   lifecycle {
     ignore_changes = [
       body.properties.provisioningState,
+      body.properties.id,
+      body.properties.name,
       body.systemData,
-      body.type
+      body.type,
     ]
   }
 }
