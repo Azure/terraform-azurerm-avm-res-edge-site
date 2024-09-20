@@ -40,8 +40,9 @@ resource "azapi_resource" "site" {
     systemData = null
     type       = null
   }
-  name      = var.site_resource_name
-  parent_id = var.resource_group_id
+  name                      = var.site_resource_name
+  parent_id                 = var.resource_group_id
+  schema_validation_enabled = false
 
   lifecycle {
     ignore_changes = [
