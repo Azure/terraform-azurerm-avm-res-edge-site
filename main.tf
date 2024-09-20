@@ -40,9 +40,9 @@ resource "azapi_resource" "site" {
     systemData = null
     type       = null
   }
-  name                      = var.site_resource_name
-  parent_id                 = var.resource_group_id
-  
+  name      = var.site_resource_name
+  parent_id = var.resource_group_id
+
   lifecycle {
     ignore_changes = [
       body.properties.provisioningState,
