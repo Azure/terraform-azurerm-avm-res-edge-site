@@ -1,5 +1,6 @@
 terraform {
   required_version = "~> 1.5"
+
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -43,13 +44,14 @@ resource "azurerm_resource_group" "rg" {
 # with a data source.
 module "test" {
   source = "../../"
-  # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
-  # ...
-  location              = azurerm_resource_group.rg.location
+
   address_resource_name = "test"
   country               = "US"
-  resource_group_id     = azurerm_resource_group.rg.id
-  site_display_name     = "test"
-  site_resource_name    = "test"
-  enable_telemetry      = var.enable_telemetry
+  # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
+  # ...
+  location           = azurerm_resource_group.rg.location
+  resource_group_id  = azurerm_resource_group.rg.id
+  site_display_name  = "test"
+  site_resource_name = "test"
+  enable_telemetry   = var.enable_telemetry
 }
