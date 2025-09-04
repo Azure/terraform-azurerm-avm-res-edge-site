@@ -27,6 +27,10 @@ resource "azapi_resource" "address" {
       }
     }
   }
+  create_headers = var.enable_telemetry ? { "User-Agent" : local.avm_azapi_header } : null
+  delete_headers = var.enable_telemetry ? { "User-Agent" : local.avm_azapi_header } : null
+  read_headers   = var.enable_telemetry ? { "User-Agent" : local.avm_azapi_header } : null
+  update_headers = var.enable_telemetry ? { "User-Agent" : local.avm_azapi_header } : null
 }
 
 resource "azapi_resource" "site" {
@@ -44,7 +48,11 @@ resource "azapi_resource" "site" {
     systemData = null
     type       = null
   }
+  create_headers            = var.enable_telemetry ? { "User-Agent" : local.avm_azapi_header } : null
+  delete_headers            = var.enable_telemetry ? { "User-Agent" : local.avm_azapi_header } : null
+  read_headers              = var.enable_telemetry ? { "User-Agent" : local.avm_azapi_header } : null
   schema_validation_enabled = false
+  update_headers            = var.enable_telemetry ? { "User-Agent" : local.avm_azapi_header } : null
 
   lifecycle {
     ignore_changes = [
