@@ -22,7 +22,6 @@ The following requirements are needed by this module:
 
 The following resources are used by this module:
 
-- [azapi_resource.address](https://registry.terraform.io/providers/azure/azapi/latest/docs/resources/resource) (resource)
 - [azapi_resource.site](https://registry.terraform.io/providers/azure/azapi/latest/docs/resources/resource) (resource)
 - [azurerm_management_lock.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock) (resource)
 - [azurerm_role_assignment.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
@@ -36,21 +35,9 @@ The following resources are used by this module:
 
 The following input variables are required:
 
-### <a name="input_address_resource_name"></a> [address\_resource\_name](#input\_address\_resource\_name)
-
-Description: A resource name for the address.
-
-Type: `string`
-
 ### <a name="input_country"></a> [country](#input\_country)
 
-Description: The order country of the site.
-
-Type: `string`
-
-### <a name="input_location"></a> [location](#input\_location)
-
-Description: Azure region where the resource should be deployed.
+Description: The country of the site.
 
 Type: `string`
 
@@ -84,22 +71,6 @@ Type: `string`
 
 Default: `""`
 
-### <a name="input_company_name"></a> [company\_name](#input\_company\_name)
-
-Description: The company name of the site.
-
-Type: `string`
-
-Default: `""`
-
-### <a name="input_contact_name"></a> [contact\_name](#input\_contact\_name)
-
-Description: The contact name of the site.
-
-Type: `string`
-
-Default: `" "`
-
 ### <a name="input_customer_managed_key"></a> [customer\_managed\_key](#input\_customer\_managed\_key)
 
 Description: A map describing customer-managed keys to associate with the resource. This includes the following properties:
@@ -123,14 +94,6 @@ object({
 ```
 
 Default: `null`
-
-### <a name="input_email_list"></a> [email\_list](#input\_email\_list)
-
-Description: A list of email addresses for the site.
-
-Type: `list(string)`
-
-Default: `[]`
 
 ### <a name="input_enable_telemetry"></a> [enable\_telemetry](#input\_enable\_telemetry)
 
@@ -159,30 +122,6 @@ object({
 ```
 
 Default: `null`
-
-### <a name="input_mobile"></a> [mobile](#input\_mobile)
-
-Description: The mobile phone number of the site.
-
-Type: `string`
-
-Default: `""`
-
-### <a name="input_phone"></a> [phone](#input\_phone)
-
-Description: The phone number of the site.
-
-Type: `string`
-
-Default: `""`
-
-### <a name="input_phone_extension"></a> [phone\_extension](#input\_phone\_extension)
-
-Description: The phone extension of the site.
-
-Type: `string`
-
-Default: `""`
 
 ### <a name="input_postal_code"></a> [postal\_code](#input\_postal\_code)
 
@@ -222,6 +161,22 @@ map(object({
 
 Default: `{}`
 
+### <a name="input_site_description"></a> [site\_description](#input\_site\_description)
+
+Description: A description for the site.
+
+Type: `string`
+
+Default: `""`
+
+### <a name="input_site_labels"></a> [site\_labels](#input\_site\_labels)
+
+Description: A map of labels to assign to the site.
+
+Type: `map(string)`
+
+Default: `{}`
+
 ### <a name="input_state_or_province"></a> [state\_or\_province](#input\_state\_or\_province)
 
 Description: The state or province of the site.
@@ -246,14 +201,6 @@ Type: `string`
 
 Default: `""`
 
-### <a name="input_street_address_3"></a> [street\_address\_3](#input\_street\_address\_3)
-
-Description: The third line of the street address of the site.
-
-Type: `string`
-
-Default: `""`
-
 ### <a name="input_tags"></a> [tags](#input\_tags)
 
 Description: (Optional) Tags of the resource.
@@ -261,14 +208,6 @@ Description: (Optional) Tags of the resource.
 Type: `map(string)`
 
 Default: `null`
-
-### <a name="input_zip_extended_code"></a> [zip\_extended\_code](#input\_zip\_extended\_code)
-
-Description: The extended ZIP code of the site.
-
-Type: `string`
-
-Default: `""`
 
 ## Outputs
 

@@ -1,48 +1,21 @@
-resource "azapi_resource" "address" {
-  location  = var.location
-  name      = var.address_resource_name
+resource "azapi_resource" "site" {
+  name      = var.site_resource_name
   parent_id = var.resource_group_id
-  type      = "Microsoft.EdgeOrder/addresses@2024-02-01"
+  type      = "Microsoft.Edge/sites@2025-06-01"
   body = {
     properties = {
-      addressClassification = "Site"
-      shippingAddress = {
-        addressType     = "None"
+      description = var.site_description
+      displayName = var.site_display_name
+      labels      = var.site_labels
+      siteAddress = {
         city            = var.city
-        companyName     = var.company_name
         country         = var.country
         postalCode      = var.postal_code
         stateOrProvince = var.state_or_province
         streetAddress1  = var.street_address_1
         streetAddress2  = var.street_address_2
-        streetAddress3  = var.street_address_3
-        zipExtendedCode = var.zip_extended_code
-      }
-      contactDetails = {
-        contactName    = var.contact_name
-        emailList      = var.email_list
-        mobile         = var.mobile
-        phone          = var.phone
-        phoneExtension = var.phone_extension
       }
     }
-  }
-}
-
-resource "azapi_resource" "site" {
-  name      = var.site_resource_name
-  parent_id = var.resource_group_id
-  type      = "Microsoft.Edge/Sites@2023-07-01-preview"
-  body = {
-    properties = {
-      displayName       = var.site_display_name
-      addressResourceId = azapi_resource.address.id
-      provisioningState = null
-    }
-    id         = null
-    name       = null
-    systemData = null
-    type       = null
   }
   schema_validation_enabled = false
 
@@ -63,7 +36,7 @@ resource "azurerm_management_lock" "this" {
 
   lock_level = var.lock.kind
   name       = coalesce(var.lock.name, "lock-${var.lock.kind}")
-  scope      = azapi_resource.address.id
+  scope      = azapi_resource.site.id
   notes      = var.lock.kind == "CanNotDelete" ? "Cannot delete the resource or its child resources." : "Cannot delete or modify the resource or its child resources."
 }
 
@@ -71,7 +44,7 @@ resource "azurerm_role_assignment" "this" {
   for_each = var.role_assignments
 
   principal_id                           = each.value.principal_id
-  scope                                  = azapi_resource.address.id
+  scope                                  = azapi_resource.site.id
   condition                              = each.value.condition
   condition_version                      = each.value.condition_version
   delegated_managed_identity_resource_id = each.value.delegated_managed_identity_resource_id

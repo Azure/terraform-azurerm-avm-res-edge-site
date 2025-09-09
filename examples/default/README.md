@@ -16,7 +16,6 @@ terraform {
 }
 
 provider "azurerm" {
-  subscription_id = "0000000-0000-00000-000000"
   features {
     resource_group {
       prevent_deletion_if_contains_resources = false
@@ -25,17 +24,10 @@ provider "azurerm" {
 }
 
 
-## Section to provide a random Azure region for the resource group
-# This allows us to randomize the region for the resource group.
-module "regions" {
-  source  = "Azure/regions/azurerm"
-  version = "~> 0.3"
-}
-
 # This ensures we have unique CAF compliant names for our resources.
 module "naming" {
   source  = "Azure/naming/azurerm"
-  version = "~> 0.3"
+  version = "0.4.2"
 }
 
 # This is required for resource modules
@@ -51,11 +43,9 @@ resource "azurerm_resource_group" "rg" {
 module "test" {
   source = "../../"
 
-  address_resource_name = "test"
-  country               = "US"
+  country = "US"
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
-  location           = azurerm_resource_group.rg.location
   resource_group_id  = azurerm_resource_group.rg.id
   site_display_name  = "test"
   site_resource_name = "test"
@@ -109,13 +99,7 @@ The following Modules are called:
 
 Source: Azure/naming/azurerm
 
-Version: ~> 0.3
-
-### <a name="module_regions"></a> [regions](#module\_regions)
-
-Source: Azure/regions/azurerm
-
-Version: ~> 0.3
+Version: 0.4.2
 
 ### <a name="module_test"></a> [test](#module\_test)
 

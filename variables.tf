@@ -1,17 +1,6 @@
-variable "address_resource_name" {
-  type        = string
-  description = "A resource name for the address."
-}
-
 variable "country" {
   type        = string
-  description = "The order country of the site."
-}
-
-variable "location" {
-  type        = string
-  description = "Azure region where the resource should be deployed."
-  nullable    = false
+  description = "The country of the site."
 }
 
 variable "resource_group_id" {
@@ -35,18 +24,6 @@ variable "city" {
   description = "The city of the site."
 }
 
-variable "company_name" {
-  type        = string
-  default     = ""
-  description = "The company name of the site."
-}
-
-variable "contact_name" {
-  type        = string
-  default     = " "
-  description = "The contact name of the site."
-}
-
 # required AVM interfaces
 # remove only if not supported by the resource
 # tflint-ignore: terraform_unused_declarations
@@ -67,13 +44,7 @@ A map describing customer-managed keys to associate with the resource. This incl
 - `key_version` - (Optional) The version of the key. If not specified, the latest version is used.
 - `user_assigned_identity` - (Optional) An object representing a user-assigned identity with the following properties:
   - `resource_id` - The resource ID of the user-assigned identity.
-DESCRIPTION  
-}
-
-variable "email_list" {
-  type        = list(string)
-  default     = []
-  description = "A list of email addresses for the site."
+DESCRIPTION
 }
 
 variable "enable_telemetry" {
@@ -103,24 +74,6 @@ DESCRIPTION
     condition     = var.lock != null ? contains(["CanNotDelete", "ReadOnly"], var.lock.kind) : true
     error_message = "The lock level must be one of: 'None', 'CanNotDelete', or 'ReadOnly'."
   }
-}
-
-variable "mobile" {
-  type        = string
-  default     = ""
-  description = "The mobile phone number of the site."
-}
-
-variable "phone" {
-  type        = string
-  default     = ""
-  description = "The phone number of the site."
-}
-
-variable "phone_extension" {
-  type        = string
-  default     = ""
-  description = "The phone extension of the site."
 }
 
 variable "postal_code" {
@@ -156,6 +109,18 @@ DESCRIPTION
   nullable    = false
 }
 
+variable "site_description" {
+  type        = string
+  default     = ""
+  description = "A description for the site."
+}
+
+variable "site_labels" {
+  type        = map(string)
+  default     = {}
+  description = "A map of labels to assign to the site."
+}
+
 variable "state_or_province" {
   type        = string
   default     = ""
@@ -174,21 +139,9 @@ variable "street_address_2" {
   description = "The second line of the street address of the site."
 }
 
-variable "street_address_3" {
-  type        = string
-  default     = ""
-  description = "The third line of the street address of the site."
-}
-
 # tflint-ignore: terraform_unused_declarations
 variable "tags" {
   type        = map(string)
   default     = null
   description = "(Optional) Tags of the resource."
-}
-
-variable "zip_extended_code" {
-  type        = string
-  default     = ""
-  description = "The extended ZIP code of the site."
 }
