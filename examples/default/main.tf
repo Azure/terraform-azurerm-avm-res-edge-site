@@ -42,5 +42,5 @@ module "test" {
   resource_group_id  = azurerm_resource_group.rg.id
   site_display_name  = "test"
   site_resource_name = "test"
-  enable_telemetry   = var.enable_telemetry
+  enable_telemetry   = false
 }
