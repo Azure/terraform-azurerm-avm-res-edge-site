@@ -49,7 +49,7 @@ module "test" {
   resource_group_id  = azurerm_resource_group.rg.id
   site_display_name  = "test"
   site_resource_name = "test"
-  enable_telemetry   = false
+  enable_telemetry   = var.enable_telemetry
 }
 ```
 
@@ -85,7 +85,7 @@ If it is set to false, then no telemetry will be collected.
 
 Type: `bool`
 
-Default: `true`
+Default: `false`
 
 ## Outputs
 
