@@ -43,7 +43,8 @@ resource "azurerm_resource_group" "rg" {
 module "test" {
   source = "../../"
 
-  country = "US"
+  country  = "US"
+  location = var.location
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
   resource_group_id  = azurerm_resource_group.rg.id
@@ -86,6 +87,14 @@ If it is set to false, then no telemetry will be collected.
 Type: `bool`
 
 Default: `true`
+
+### <a name="input_location"></a> [location](#input\_location)
+
+Description: The Azure region for this module's resources or telemetry deployment.
+
+Type: `string`
+
+Default: `"eastus"`
 
 ## Outputs
 

@@ -3,6 +3,12 @@ variable "country" {
   description = "The country of the site."
 }
 
+variable "location" {
+  type        = string
+  description = "The Azure region for this module's resources or telemetry deployment."
+  nullable    = false
+}
+
 variable "resource_group_id" {
   type        = string
   description = "The resource group id where the resources will be deployed."
