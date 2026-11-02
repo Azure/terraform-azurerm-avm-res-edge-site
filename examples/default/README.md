@@ -43,14 +43,14 @@ resource "azurerm_resource_group" "rg" {
 module "test" {
   source = "../../"
 
-  country  = "US"
-  location = var.location
+  country = "US"
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
   resource_group_id  = azurerm_resource_group.rg.id
   site_display_name  = "test"
   site_resource_name = "test"
   enable_telemetry   = var.enable_telemetry
+  location           = var.location
 }
 ```
 
