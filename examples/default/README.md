@@ -27,7 +27,7 @@ provider "azurerm" {
 # This ensures we have unique CAF compliant names for our resources.
 module "naming" {
   source  = "Azure/avm-utl-naming/azure"
-  version = "0.2.0"
+  version = "0.3.0"
 }
 
 # This is required for resource modules
@@ -43,14 +43,14 @@ resource "azurerm_resource_group" "rg" {
 module "test" {
   source = "../../"
 
-  country  = "US"
-  location = var.location
+  country = "US"
   # source             = "Azure/avm-<res/ptn>-<name>/azurerm"
   # ...
   resource_group_id  = azurerm_resource_group.rg.id
   site_display_name  = "test"
   site_resource_name = "test"
   enable_telemetry   = var.enable_telemetry
+  location           = var.location
 }
 ```
 
@@ -108,7 +108,7 @@ The following Modules are called:
 
 Source: Azure/avm-utl-naming/azure
 
-Version: 0.2.0
+Version: 0.3.0
 
 ### <a name="module_test"></a> [test](#module\_test)
 
